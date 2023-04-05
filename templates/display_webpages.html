@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<center>
+    <h1>display_webpages</h1>
+    <table border="5">
+    <tr>
+        <th>topics_name</th>
+        <th>name</th>
+        <th>url</th>
+    </tr>
+    {% for b in Webpage %}
+    <tr>
+        <td>{{b.topics_name}}</td><br>
+        <td>{{b.name}}</td><br>
+        <td>{{b.url}}</td>
+
+    </tr>
+    {% endfor %}
+</table>
+    
+</center>
+</body>
+</html>
