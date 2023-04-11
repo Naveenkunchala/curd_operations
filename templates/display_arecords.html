@@ -8,15 +8,15 @@
 </head>
 <body>
     <center>
-        <h1 >display_arecords</h1>
-        <table border="4">
-        <tr>
+        <h1 style="color: darkturquoise;" >display_arecords</h1>
+        <table border="4" width="500px" height="300px">
+        <tr style="color: darkturquoise; background-color: black">
             <th>name</th>
             <th>author</th>
             <th>date</th>
         </tr>
         {% for c in AccessRecords %}
-           <tr>
+           <tr align="center" style="background-color: black; color :red">
             <td>{{c.name}}</td>
             <td>{{c.author}}</td>
             <td>{{c.date}}</td>

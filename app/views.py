@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
-# Create your views here.
+from django.db.models.functions import Length
+from django.db.models import Q
 from app.models import *
 
+# Create your views here.
 
 def insert_topic(request):
     tn=input('enter tn')
@@ -43,11 +44,40 @@ def display_topic(request):
 
 def display_webpages(request):
     lo=Webpage.objects.all()
+    lo=Webpage.objects.all().order_by('name')
+    lo=Webpage.objects.all().order_by('-name')
+    lo=Webpage.objects.all().order_by(Length('name'))
+    lo=Webpage.objects.all().order_by(Length('name').desc())
+    lo=Webpage.objects.all()[:2:]
+    lo=Webpage.objects.all()[1:2:]
+    lo=Webpage.objects.all()
+    lo=Webpage.objects.filter(name__regex='[a-zA-Z]{6}')
+    lo=Webpage.objects.filter(name__startswith='h')
+    lo=Webpage.objects.filter(url__endswith='.com')
+    lo=Webpage.objects.filter(name__contains='n')
+    lo=Webpage.objects.filter(name__in=('Anil','hari'))
+    lo=Webpage.objects.filter(Q(topics_name='chess') & Q(name='Anil'))
+    lo=Webpage.objects.filter(Q(topics_name='valley ball'))
     d={'Webpage':lo}
     return render(request,'display_webpages.html',context=d)
 
+
 def display_arecords(request):
     lo=AccessRecords.objects.all()
+    lo=AccessRecords.objects.filter(date__gt='2001-8-22')
+    lo=AccessRecords.objects.filter(date__gte='2001-8-22')
+    lo=AccessRecords.objects.filter(date__lt='2001-8-22')
+    lo=AccessRecords.objects.filter(date__lte='2001-8-22')
+    lo=AccessRecords.objects.filter(date__year='2001')
+    lo=AccessRecords.objects.filter(date__month='8')
+    lo=AccessRecords.objects.filter(date__day='28')
+    lo=AccessRecords.objects.filter(date__day__lt='2')
+    lo=AccessRecords.objects.filter(date__day__gt='2')
+    lo=AccessRecords.objects.all()
+    
+
+
+
     d={'AccessRecords':lo}
     return render(request,'display_arecords.html',context=d)
 
